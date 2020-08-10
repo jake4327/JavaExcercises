@@ -2,11 +2,17 @@ package com.qa.day2;
 
 public class ConditionalsTaxes {
 
-    public void main(String[] args) {
+    //THIS IS NOT HOW TAXES WORK PLEASE FIX
+    public static void main(String[] args) {
         System.out.println(govermentMoney(16000));
+        System.out.println(govermentMoney(10000));
+        System.out.println(govermentMoney(25000));
+        System.out.println(govermentMoney(35000));
+        System.out.println(govermentMoney(50000));
+
     }
 
-    public double taxAmount(double salary){
+    public static double taxAmount(double salary){
         if(salary > 0 && salary < 14999){
             return 0;
         } else if (salary > 14999 && salary < 19999){
@@ -20,7 +26,7 @@ public class ConditionalsTaxes {
         }
     }
 
-    public double govermentMoney(double salary){
-        return salary - (salary/100 * taxAmount(salary));
+    public static double govermentMoney(double salary){
+        return (salary/100 * taxAmount(salary));
     }
 }
