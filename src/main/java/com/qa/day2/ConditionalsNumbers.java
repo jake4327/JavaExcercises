@@ -5,6 +5,7 @@ public class ConditionalsNumbers {
     public static void main(String[] args) {
         System.out.println(digitAddition(99));
         System.out.println(numbersToDigits(99));
+        System.out.println(numbersToDigits(50));
         System.out.println(digitAdditionThreeNumbers(189));
         System.out.println(digitAdditionFourNumbers(9999));
     }
@@ -31,7 +32,11 @@ public class ConditionalsNumbers {
         if (num > 19){
             String string1; String string2;
             string1 = printNumberAboveTwenty(digitTwo);
-            string2 = printNumberbelowTen(digitOne, true);
+            if (digitOne == 0) {
+                string2 = printNumberbelowTen(digitOne, false);
+            }else {
+                string2 = printNumberbelowTen(digitOne, true);
+            }
             return string1 + string2;
         }else{
             if(num < 10){
