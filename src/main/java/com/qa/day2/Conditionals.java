@@ -3,20 +3,37 @@ package com.qa.day2;
 public class Conditionals {
 
     public static void main(String[] args) {
+        System.out.println(problemOne(5,6, false));
+        System.out.println(problemOne(5,6,true));
+        flowChart(2001);
+        flowChart(2000);
+        flowChart(6001);
+        flowChart(6000);
+        flowChart(4001);
+        flowChart(4000);
+        flowChart(101);
+        flowChart(100);
+        flowChart(601);
+        flowChart(600);
+        flowChart(501);
+        flowChart(500);
+
+        System.out.println(blackJack(21,1));
+        System.out.println(blackJack(5,5));
 
     }
 
-    public int problemOne(int intergerOne, int integerTwo, boolean booleanOne){
+    public static int problemOne(int integerOne, int integerTwo, boolean booleanOne){
         if(booleanOne){
-            return Operators.addition(intergerOne, integerTwo);
+            return Operators.addition(integerOne, integerTwo);
         } else {
-            return Operators.multiplication(intergerOne, integerTwo);
+            return Operators.multiplication(integerOne, integerTwo);
         }
     }
 
-    public void flowChart(int A) {
+    public static void flowChart(int A) {
         if (A > 2000) {
-            System.out.println(A);
+            System.out.println("A");
             if (A > 6000) {
                 System.out.println("C");
             } else {
@@ -45,7 +62,7 @@ public class Conditionals {
         }
     }
 
-    public int blackJack(int card1, int card2){
+    public static int blackJack(int card1, int card2){
         if(card1 + card2 > 21){
             return 0;
         }else{

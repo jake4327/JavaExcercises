@@ -6,10 +6,6 @@ public class Operators {
         System.out.println(addition(1,2));
         System.out.println(multiplication(1,2));
         System.out.println(division(50, 5));
-        OperatorsResults op = new OperatorsResults(50, 50, 50);
-        op.printResults();
-        System.out.println(op.getGradeAsPercentage());
-        System.out.println(op.gradeBreakDown());
     }
 
     public static int addition(int numberOne, int numberTwo){
@@ -17,11 +13,13 @@ public class Operators {
     }
 
     public static int multiplication(int numberOne, int numberTwo){
-        return numberOne + numberTwo;
+        return numberOne * numberTwo;
     }
 
     public static double division(int numberOne, int numberTwo){
-        return numberOne / numberTwo;
+        double one = numberOne;
+        double two = numberTwo;
+        return one / two;
     }
 
 

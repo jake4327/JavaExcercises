@@ -6,6 +6,13 @@ public class OperatorsResults {
     private int bioMark;
     private final int TOTALMARK = 150;
 
+    public static void main(String[] args) {
+        OperatorsResults op = new OperatorsResults(110,110,110);
+        op.printResults();
+        System.out.println(op.shouldPass());
+        System.out.println(op.gradeBreakDown());
+    }
+
     public OperatorsResults(int phyMark, int chemMark, int bioMark){
         this.phyMark = phyMark;
         this.chemMark = chemMark;
@@ -19,7 +26,10 @@ public class OperatorsResults {
     }
 
     public double getGradeAsPercentage(){
-        return ((phyMark + bioMark + chemMark) /450.0) *100;
+        double p = phyMark;
+        double b = bioMark;
+        double c = chemMark;
+        return ((p + b + c) /(TOTALMARK*3)) *100;
     }
 
     public String shouldPass(){
@@ -50,7 +60,7 @@ public class OperatorsResults {
         return review;
     }
 
-    public double getPercentageGrade(int grade){
-        return grade/TOTALMARK * 100;
+    public double getPercentageGrade(double grade){
+        return (grade/TOTALMARK) * 100;
     }
 }
