@@ -1,6 +1,6 @@
 package com.qa.day2;
 
-public class helloWorld {
+public class HelloWorld {
     //System.out.println("Hello world")
 
     public static void main(String[] args) {

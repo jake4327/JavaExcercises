@@ -1,6 +1,6 @@
 package com.qa.day2;
 
-public class conditionals {
+public class Conditionals {
 
     public static void main(String[] args) {
 
@@ -8,9 +8,9 @@ public class conditionals {
 
     public int problemOne(int intergerOne, int integerTwo, boolean booleanOne){
         if(booleanOne){
-            return operators.addition(intergerOne, integerTwo);
+            return Operators.addition(intergerOne, integerTwo);
         } else {
-            return operators.multiplication(intergerOne, integerTwo);
+            return Operators.multiplication(intergerOne, integerTwo);
         }
     }
 
@@ -44,5 +44,14 @@ public class conditionals {
             }
         }
     }
+
+    public int blackJack(int card1, int card2){
+        if(card1 + card2 > 21){
+            return 0;
+        }else{
+            return card1 + card2;
+        }
+    }
+
 
 }

@@ -1,12 +1,12 @@
 package com.qa.day2;
 
-public class operatorsResults {
+public class OperatorsResults {
     private int phyMark;
     private int chemMark;
     private int bioMark;
     private final int TOTALMARK = 150;
 
-    public operatorsResults(int phyMark, int chemMark, int bioMark){
+    public OperatorsResults(int phyMark, int chemMark, int bioMark){
         this.phyMark = phyMark;
         this.chemMark = chemMark;
         this.bioMark = bioMark;
