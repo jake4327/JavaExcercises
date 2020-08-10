@@ -14,7 +14,7 @@ public class operators {
         return numberOne + numberTwo;
     }
 
-    public static int division(int numberOne, int numberTwo){
+    public static double division(int numberOne, int numberTwo){
         return numberOne / numberTwo;
     }
 
