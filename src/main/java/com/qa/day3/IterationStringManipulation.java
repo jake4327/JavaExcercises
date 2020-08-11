@@ -12,7 +12,11 @@ public class IterationStringManipulation {
         System.out.println();
         printReverseVertical("hello World");
         System.out.println();
-        System.out.println(insideMessage("hello World", "hello"));
+        insideMessage("hello World", "hello");
+        insideMessage("0000", "000");
+        insideMessage("11 1 1 1", "1");
+        insideMessage("hello", "goodbye");
+        insideMessage("small match", "all");
     }
 
     public static int countWords(String input){
@@ -56,11 +60,20 @@ public class IterationStringManipulation {
 
     public static boolean insideMessage(String message, String doesMessageContain){
         for(int i = 0; i < message.length(); i++){
-            if(message.substring(i,doesMessageContain.length()-1).equals(doesMessageContain.substring(0, doesMessageContain.length()-1))){
+            try {
+                //System.out.println(message.substring(i, doesMessageContain.length()+i));
+                //System.out.println(doesMessageContain);
+                //System.out.println();
+                if (doesMessageContain.equals(message.substring(i, doesMessageContain.length()+i))) {
                     System.out.println("match found");
                     return true;
                 }
+            }catch(Exception e){
+                System.out.println("Patch fails");
+                break;
+            }
         }
+        System.out.println("match not found");
         return false;
     }
 }

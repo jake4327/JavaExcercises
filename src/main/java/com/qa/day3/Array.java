@@ -16,7 +16,7 @@ public class Array {
     }
 
     public static void integerArrayPopulation(){
-        ArrayList<Integer> integersArray = new ArrayList<Integer>();
+        ArrayList<Integer> integersArray = new ArrayList<>();
         for(Integer i = 0; i < 100; i++){
             integersArray.add(i);
             System.out.println(integersArray.get(i));
@@ -26,4 +26,5 @@ public class Array {
             System.out.println(a);
         }
     }
+
 }
