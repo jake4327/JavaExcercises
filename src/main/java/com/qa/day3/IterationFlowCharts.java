@@ -10,9 +10,9 @@ public class IterationFlowCharts {
         flowchartTwoForLoop();
         numberRevisited(); **/
         //printNumbers();
-        numberRevisited();
-        //coins(10, 4.58);
-        //coins(100, 4.58);
+        //numberRevisited();
+        coins(10, 4.58);
+        coins(100, 4.58);
     }
 
     public static void flowchartOneWhileLoop() {
@@ -75,7 +75,7 @@ public class IterationFlowCharts {
         if (cost > payment) {
             System.out.println("Sorry, you don't have enough money.");
         } else {
-            double change = payment - cost;
+            Double change = (payment - cost);
             System.out.println("Total change: " + change);
             while (change >= 50) {
                 fifthtyNote += 1;
@@ -126,8 +126,9 @@ public class IterationFlowCharts {
                 change -= 0.01;
             }
             if(change > 0){
-                if(Math.round(change) == 0.01) {
+                while(Math.round(change) == 0.01) {
                     onePence += 1;
+                    change -= 0.01;
                 }
             }
             if (fifthtyNote >= 1) {

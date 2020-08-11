@@ -69,11 +69,12 @@ public class IterationStringManipulation {
                     return true;
                 }
             }catch(Exception e){
-                System.out.println("Patch fails");
+                //System.out.println("Patch fails");
                 break;
             }
         }
         System.out.println("match not found");
         return false;
     }
+
 }
