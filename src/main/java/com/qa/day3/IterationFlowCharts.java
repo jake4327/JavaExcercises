@@ -4,11 +4,15 @@ import com.qa.day2.ConditionalsNumbers;
 public class IterationFlowCharts {
 
     public static void main(String[] args) {
-        flowchartOneForLoop();
+        /** flowchartOneForLoop();
         flowchartOneWhileLoop();
         flowchartTwoWhileLoop();
         flowchartTwoForLoop();
+        numberRevisited(); **/
+        //printNumbers();
         numberRevisited();
+        //coins(10, 4.58);
+        //coins(100, 4.58);
     }
 
     public static void flowchartOneWhileLoop() {
@@ -49,9 +53,10 @@ public class IterationFlowCharts {
     }
 
     public static void numberRevisited() {
-        for (int i = 0; i <= 100; i++) {
+        for (int i = 0; i < 100; i++) {
             System.out.println(ConditionalsNumbers.numbersToDigits(i));
         }
+        System.out.println("one hundred");
     }
 
     public static void coins(double payment, double cost) {
@@ -71,89 +76,106 @@ public class IterationFlowCharts {
             System.out.println("Sorry, you don't have enough money.");
         } else {
             double change = payment - cost;
-            while (change > 50) {
+            System.out.println("Total change: " + change);
+            while (change >= 50) {
                 fifthtyNote += 1;
-                change -= 50;
+                change -= 50.0;
             }
-            while (change > 20) {
+            while (change >= 20) {
                 twentyNote += 1;
-                change -= 20;
+                change -= 20.0;
             }
-            while (change > 10) {
+            while (change >= 10) {
                 tenNote += 1;
-                change -= 10;
+                change -= 10.0;
             }
-            while (change > 5) {
+            while (change >= 5) {
                 fiveNote += 1;
-                change -= 5;
+                change -= 5.00;
             }
-            while (change > 2) {
+            while (change >= 2) {
                 twoPound += 1;
-                change -= 2;
+                change -= 2.0;
             }
-            while (change > 1) {
+            while (change >= 1) {
                 onePound += 1;
-                change -= 1;
+                change -= 1.0;
             }
-            while (change > 0.5) {
+            while (change >= 0.5) {
                 fifthtyPence += 1;
                 change -= 0.5;
             }
-            while (change > 0.2) {
+            while (change >= 0.2) {
                 twentyPence += 1;
                 change -= 0.2;
             }
-            while (change > 0.1) {
+            while (change >= 0.1) {
                 tenPence += 1;
                 change -= 0.1;
             }
-            while (change > 0.05) {
+            while (change >= 0.05) {
                 fivePence += 1;
                 change -= 0.05;
             }
-            while (change > 0.02) {
+            while (change >= 0.02) {
                 twoPence += 1;
                 change -= 0.02;
             }
-            while (change > 0.01) {
+            while (change >= 0.01) {
                 onePence += 1;
                 change -= 0.01;
             }
-            if (fifthtyNote > 1) {
+            if(change > 0){
+                if(Math.round(change) == 0.01) {
+                    onePence += 1;
+                }
+            }
+            if (fifthtyNote >= 1) {
                 System.out.println("£50: " + fifthtyNote);
             }
-            if (twentyNote > 1) {
+            if (twentyNote >= 1) {
                 System.out.println("£20: " + twentyNote);
             }
-            if (tenNote > 1) {
+            if (tenNote >= 1) {
                 System.out.println("£10: " + tenNote);
             }
-            if (fiveNote > 1) {
+            if (fiveNote >= 1) {
                 System.out.println("£5: " + fiveNote);
             }
-            if (twoPound > 1) {
+            if (twoPound >= 1) {
                 System.out.println("£2: " + twoPound);
             }
-            if (onePound > 1) {
+            if (onePound >= 1) {
                 System.out.println("£1: " + onePound);
             }
-            if (fifthtyPence > 1) {
+            if (fifthtyPence >= 1) {
                 System.out.println("£0.50: " + fifthtyPence);
             }
-            if (twentyPence > 1) {
+            if (twentyPence >= 1) {
                 System.out.println("£0.20: " + twentyPence);
             }
-            if (tenPence > 1) {
+            if (tenPence >= 1) {
                 System.out.println("£0.10: " + tenPence);
             }
-            if (fivePence > 1) {
+            if (fivePence >= 1) {
                 System.out.println("£0.05: " + fivePence);
             }
-            if (twoPence > 1) {
+            if (twoPence >= 1) {
                 System.out.println("£0.02: " + twoPence);
             }
-            if (onePence > 1) {
+            if (onePence >= 1) {
                 System.out.println("£0.01: " + onePence);
+            }
+        }
+    }
+
+    public static void printNumbers(){
+        for(int A = 100; A < 200; A++) {
+            if (A > 200) {
+                break;
+            } else {
+                System.out.println(A);
+                A = A + 1;
             }
         }
     }

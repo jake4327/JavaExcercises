@@ -3,7 +3,7 @@ package com.qa.day3;
 public class IterationStringManipulation {
 
     public static void main(String[] args) {
-        /** System.out.println(countWords("This is a sentence where all of the words are counted there are fiftheen words"));
+        System.out.println(countWords("This is a sentence where all of the words are counted there are fiftheen words"));
         System.out.println(countWords(" space at front word count six"));
         System.out.println(countWords("space at back word count six "));
         System.out.println(countWords("  double space at front and double space at back word count tweleve  "));
@@ -11,7 +11,7 @@ public class IterationStringManipulation {
         printVertical("hello World");
         System.out.println();
         printReverseVertical("hello World");
-        System.out.println();**/
+        System.out.println();
         System.out.println(insideMessage("hello World", "hello"));
     }
 
