@@ -1,6 +1,9 @@
 package com.qa.day3;
 import com.qa.day2.ConditionalsNumbers;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class IterationFlowCharts {
 
     public static void main(String[] args) {
@@ -59,6 +62,8 @@ public class IterationFlowCharts {
         System.out.println("one hundred");
     }
 
+    //format code so that double has only 2dp
+    //times code by 100
     public static void coins(double payment, double cost) {
         int fifthtyNote = 0;
         int twentyNote = 0;
@@ -75,60 +80,69 @@ public class IterationFlowCharts {
         if (cost > payment) {
             System.out.println("Sorry, you don't have enough money.");
         } else {
-            Double change = (payment - cost);
-            System.out.println("Total change: " + change);
-            while (change >= 50) {
+            double change = (payment - cost);
+            Double changeTruncated = new Double(change);
+
+            Double changeD = BigDecimal.valueOf(changeTruncated)
+                    .setScale(2, RoundingMode.HALF_UP)
+                    .doubleValue();
+
+            System.out.println("Total change: " + changeD);
+            while (changeD >= 50) {
                 fifthtyNote += 1;
-                change -= 50.0;
+                changeD -= 50.0;
             }
-            while (change >= 20) {
+            while (changeD >= 20) {
                 twentyNote += 1;
-                change -= 20.0;
+                changeD -= 20.0;
             }
-            while (change >= 10) {
+            while (changeD >= 10) {
                 tenNote += 1;
-                change -= 10.0;
+                changeD -= 10.0;
             }
-            while (change >= 5) {
+            while (changeD >= 5.0) {
                 fiveNote += 1;
-                change -= 5.00;
+                changeD -= 5.00;
+                System.out.println(changeD);
             }
-            while (change >= 2) {
+            while (changeD >= 2) {
                 twoPound += 1;
-                change -= 2.0;
+                changeD -= 2.0;
             }
-            while (change >= 1) {
+            while (changeD >= 1.00) {
                 onePound += 1;
-                change -= 1.0;
+                changeD -= 1.0;
             }
-            while (change >= 0.5) {
+            while (changeD >= 0.50) {
                 fifthtyPence += 1;
-                change -= 0.5;
+                changeD -= 0.5;
             }
-            while (change >= 0.2) {
+            while (changeD >= 0.20) {
                 twentyPence += 1;
-                change -= 0.2;
+                changeD -= 0.2;
             }
-            while (change >= 0.1) {
+            while (changeD >= 0.1) {
                 tenPence += 1;
-                change -= 0.1;
+                changeD -= 0.1;
             }
-            while (change >= 0.05) {
+            while (changeD >= 0.05) {
                 fivePence += 1;
-                change -= 0.05;
+                changeD -= 0.05;
             }
-            while (change >= 0.02) {
+            while (changeD >= 0.02) {
                 twoPence += 1;
-                change -= 0.02;
+                changeD -= 0.02;
             }
-            while (change >= 0.01) {
+            while (changeD >= 0.01) {
                 onePence += 1;
-                change -= 0.01;
+                changeD -= 0.01;
+                System.out.println(changeD);
             }
-            if(change > 0){
-                while(Math.round(change) == 0.01) {
+            if(changeD > 0){
+                while(0 < changeD && changeD < 0.01) {
                     onePence += 1;
-                    change -= 0.01;
+                    changeD -= changeD;
+                    System.out.println(changeD);
                 }
             }
             if (fifthtyNote >= 1) {
