@@ -2,9 +2,9 @@ package com.qa.day4;
 
 public class Table {
 
-    int temperature;
-    int weight;
-    int luminosity;
+    private final int temperature;
+    private final int weight;
+    private int luminosity;
 
     public Table(int weight, int temperature){
         this.temperature = temperature;

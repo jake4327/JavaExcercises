@@ -6,23 +6,17 @@ public class OperatorsResults {
     private int bioMark;
     private final int TOTALMARK = 150;
 
-    public static void main(String[] args) {
-        OperatorsResults op = new OperatorsResults(110,110,110);
-        op.printResults();
-        System.out.println(op.shouldPass());
-        System.out.println(op.gradeBreakDown());
-    }
-
     public OperatorsResults(int phyMark, int chemMark, int bioMark){
         this.phyMark = phyMark;
         this.chemMark = chemMark;
         this.bioMark = bioMark;
     }
 
-    public void printResults(){
-        System.out.println("Physics Mark: " + phyMark +
+    public String printResults(){
+        String markResults = "Physics Mark: " + phyMark +
                 "\nChemistry Mark: " + chemMark +
-                "\nBiology Mark: " + bioMark);
+                "\nBiology Mark: " + bioMark;
+        return markResults;
     }
 
     public double getGradeAsPercentage(){
@@ -32,27 +26,23 @@ public class OperatorsResults {
         return ((p + b + c) /(TOTALMARK*3)) *100;
     }
 
-    public String shouldPass(){
-        if (getGradeAsPercentage() > 60){
-            return "Pass";
-        } else {
-            return "fail";
-        }
+    public boolean shouldPass(){
+        return getGradeAsPercentage() >= 60;
     }
 
     public String gradeBreakDown(){
         String review =  "";
-        if (getPercentageGrade(phyMark) > 60){
+        if (getPercentageGrade(phyMark) >= 60){
             review += "Physics passed\n";
         } else {
             review += "Physics failed\n";
         }
-        if (getPercentageGrade(bioMark) > 60 ){
+        if (getPercentageGrade(bioMark) >= 60 ){
             review += "Biology passed\n";
         } else {
             review += "Biology failed\n";
         }
-        if (getPercentageGrade(chemMark) > 60){
+        if (getPercentageGrade(chemMark) >= 60){
             review += "Chemistry passed\n";
         } else {
             review += "Chemistry failed\n";

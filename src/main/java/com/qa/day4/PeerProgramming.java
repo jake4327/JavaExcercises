@@ -72,7 +72,7 @@ public class PeerProgramming {
                 193, 45, 153, 153, 65, 107, 107, 71, 137, 137, 87, 40, 40, 98, 127, 127, 45, 146, 146, 98, 197, 197, 10,
                 59, 59, 100, 124, 124, 12, 59, 59, 54, 54, 54, 98, 119, 119, 87, 121, 121, 32, 189, 189, 65, 108, 108,
                 97, 21, 21, 64, 18, 18, 31, 90, 90, 54, 52, 52, 65, 129, 129, 87, 181, 181, 98, 123, 123, 65, 132, 132, 21};
-        //System.out.println(Arrays.toString(whereDoesGoldilocksEat(testArrayThree,true)));
+        System.out.println(Arrays.toString(whereDoesGoldilocksEat(testArrayThree,true)));
 
         System.out.println("===============================================");
         System.out.println("==================Daood_Test=======================");
@@ -164,9 +164,10 @@ public class PeerProgramming {
 
     public static int[] whereDoesGoldilocksEat(int[] inputData, boolean isLuminosityAFactor) {
         //System.out.println(inputData);
-        final int MAXLUMINOSITY = 70;
+        final int GOLDILOCKSMAXLUMINOSITY = 70;
         int goldilocksWeight = inputData[0];
         int goldilocksMaxTemp = inputData[1];
+        // [ GW, GT, T1_Weight, ... , TN_Weight]
         int[] avabliableTables = new int[(inputData.length - 2)/2];
         int indexInAvaliableTables = 0;
         ArrayList<Table> resturant = new ArrayList<>();
@@ -183,10 +184,12 @@ public class PeerProgramming {
                 resturant.add(new Table(inputData[i], inputData[i + 1]));
             }
         }
-
-        /*for(Table t: resturant){
+        /*
+        for(Table t: resturant){
             System.out.println(t.getTemperature() + " " + t.getWeight());
-        }*/
+            System.out.println(t.getTemperature());
+        }
+         */
 
         for(int i = 0; i < resturant.size(); i++){
             //System.out.println("MT: MAX TEMP; MW: MAX WEIGHT");
@@ -197,12 +200,12 @@ public class PeerProgramming {
                 System.out.println("MT: " + goldilocksMaxTemp + " >= " + "Temp: " + resturant.get(i).getTemperature());
             */
             if(isLuminosityAFactor){
-                /*System.out.println(MAXLUMINOSITY +"<="+ resturant.get(i).getLuminosity());
-                System.out.println(MAXLUMINOSITY <= resturant.get(i).getLuminosity());
+                /*System.out.println(GOLDILOCKSMAXLUMINOSITY +"<="+ resturant.get(i).getLuminosity());
+                System.out.println(GOLDILOCKSMAXLUMINOSITY <= resturant.get(i).getLuminosity());
                 */
                 if ((goldilocksWeight <= resturant.get(i).getWeight()) &&
                         (goldilocksMaxTemp >= resturant.get(i).getTemperature()) &&
-                        (MAXLUMINOSITY <= resturant.get(i).getLuminosity())) {
+                        (GOLDILOCKSMAXLUMINOSITY <= resturant.get(i).getLuminosity())) {
                     avabliableTables[indexInAvaliableTables] = i+1;
                     indexInAvaliableTables++;
                 }
@@ -243,8 +246,12 @@ public class PeerProgramming {
             vars.add(maxWeightTable[i]);
             vars.add(luminosityTable[i]);
         }
-        System.out.println(vars);
-
+        //System.out.println(vars);
+        int count = 1;
+        for(int i: maxWeightTable){
+            System.out.println("Table_" + count + " Weight: " + i +"kg" );
+            count++;
+        }
     }
 
     /*
@@ -257,26 +264,30 @@ public class PeerProgramming {
         final int MAXTEMP = goldilocks[1];
         final int MAXLUMINOSITY = 70;
         // Multi dimensional array for the weight of goldilocks and temp of porridge
-        int[] tempTable = {90, 110, 113, 191, 129, 163, 193, 153, 107, 137, 40, 127, 146, 197, 59, 124, 59, 54, 119, 121, 189, 108, 21, 18, 90, 52, 129, 181, 123, 132};
         int[] weightTable = {297, 66, 257, 276, 280, 163, 193, 153, 107, 137, 40, 127, 146, 197, 59, 124, 59, 54, 119, 121, 189, 108, 21, 18, 90, 52, 129, 181, 123, 132};
-        int[] luminosityTable ={54, 78, 98, 12, 22, 12, 45, 65, 71, 87, 98, 45, 98, 10, 100, 12, 54, 98, 87, 32, 65, 97, 64, 31, 54, 65, 87, 98, 65, 21};
+        int[] tempTable = {90, 110, 113, 191, 129, 163, 193, 153, 107, 137, 40, 127, 146, 197, 59, 124, 59, 54, 119, 121, 189, 108, 21, 18, 90, 52, 129, 181, 123, 132};
+        int[] luminosityTable = {54, 78, 98, 12, 22, 12, 45, 65, 71, 87, 98, 45, 98, 10, 100, 12, 54, 98, 87, 32, 65, 97, 64, 31, 54, 65, 87, 98, 65, 21};
 
-        int tableNumber = 0;
+        int tableNumber = 1;
         int[] avlTables = new int[0];
-
+        //plan
         for(int i = 0; i < weightTable.length; i++){
-            //System.out.println("Max Weight: " + weightTable[i]);
+            //System.out.println();
+            //System.out.println("Weight table" +tableNumber+" can hold: " + weightTable[i] +"kg");
             if(MAXWEIGHT <= weightTable[i]){
-                if(tempTable[i] <= MAXTEMP){
-                    if(luminosityTable[i] >= MAXLUMINOSITY) {
+                //System.out.println("table" + tableNumber + " can hold Goldie: " + weightTable[i]+"kg");
+                //System.out.println("Pouridge is: " + tempTable[i]+"oC");
+                if(MAXTEMP >= tempTable[i]){
+                    //System.out.println("Goldie can eat at temp: " + tempTable[i]+"oC");
+                    //if(luminosityTable[i] >= MAXLUMINOSITY) {
                         avlTables = new int[avlTables.length + 1];
                         System.out.println("Correct seat is : " + tableNumber);
-                    }
+                    //}
                 }
             }
             tableNumber++;
         }
-        //System.out.println("Number of available seats : " + Arrays.toString(avlTables));
+        System.out.println("Number of available seats : " + Arrays.toString(avlTables));
     }
 
 

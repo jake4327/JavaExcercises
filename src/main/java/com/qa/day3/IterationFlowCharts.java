@@ -57,7 +57,7 @@ public class IterationFlowCharts {
 
     public static void numberRevisited() {
         for (int i = 0; i < 100; i++) {
-            System.out.println(ConditionalsNumbers.numbersToDigits(i));
+            System.out.println(ConditionalsNumbers.numbersToDigitsOneToNineNine(i));
         }
         System.out.println("one hundred");
     }
