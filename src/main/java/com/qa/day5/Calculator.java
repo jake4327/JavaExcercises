@@ -1,6 +1,5 @@
 package com.qa.day5;
 
-import java.awt.*;
 import java.util.Scanner;
 
 public class Calculator {
@@ -17,7 +16,7 @@ public class Calculator {
         return a -b;
     }
 
-    public double multiplication(double a, double b){
+    public static double division(double a, double b){
         return a / b;
     }
 
