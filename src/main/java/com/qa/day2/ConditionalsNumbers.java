@@ -3,18 +3,17 @@ package com.qa.day2;
 public class ConditionalsNumbers {
 
     public static void main(String[] args) {
-        System.out.println(digitAddition(99));
-        System.out.println(numbersToDigits(99));
-        System.out.println(numbersToDigits(50));
-        System.out.println(digitAdditionThreeNumbers(189));
-        System.out.println(digitAdditionFourNumbers(9999));
+        digitAdditionFourNumbers(9999);
     }
 
-    public static int digitAddition(int num){
+    public static int digitAdditionTenToOneHundered(int num){
         int digitOne;
         int digitTwo;
+        if(num == 100) {
+            return 1;
+        }
         if(num > 100 || num < 10){
-            System.out.println("A number between 10 and 99");
+            //System.out.println("A number between 10 and 100");
             return 0;
         }
         else{
@@ -24,24 +23,27 @@ public class ConditionalsNumbers {
         }
     }
 
-    public static String numbersToDigits(int num){
+    public static String numbersToDigitsOneToNineNine(int num){
         int digitOne;
         int digitTwo;
+        if(num > 99 || num < 1){
+            return "Not in range";
+        }
         digitOne = num % 10;
         digitTwo = (num%100 - digitOne)/10;
         if (num > 19){
             String string1; String string2;
             string1 = printNumberAboveTwenty(digitTwo);
             if (digitOne == 0) {
-                string2 = printNumberbelowTen(digitOne, false);
+                string2 = printNumberBelowTen(digitOne, false);
             }else {
-                string2 = printNumberbelowTen(digitOne, true);
+                string2 = printNumberBelowTen(digitOne, true);
             }
             return string1 + string2;
         }else{
             if(num < 10){
                 String belowten;
-                belowten = printNumberbelowTen(num, false);
+                belowten = printNumberBelowTen(num, false);
                 return belowten;
             } else {
                 String teens;
@@ -57,9 +59,9 @@ public class ConditionalsNumbers {
         }else if (digit == 3){
             return "thirty";
         }else if (digit == 4){
-            return "fourty";
+            return "forty";
         }else if (digit == 5){
-            return "fifthty";
+            return "fifty";
         }else if(digit == 6){
             return "sixty";
         }else if(digit == 7){
@@ -73,7 +75,7 @@ public class ConditionalsNumbers {
         }
     }
 
-    public static String printNumberbelowTen(int digit, boolean dash){
+    public static String printNumberBelowTen(int digit, boolean dash){
         String start;
         if(dash){
             start = "-";
@@ -113,7 +115,7 @@ public class ConditionalsNumbers {
         } else if (num == 11) {
             return "eleven";
         } else if (num == 12) {
-            return "tweleve";
+            return "twelve";
         } else if (num == 13) {
             return "thirteen";
         } else if (num == 14){
@@ -159,7 +161,7 @@ public class ConditionalsNumbers {
         digitOne = num % 10;
         digitTwo = (num % 100 - digitOne)/10;
         digitThree = ((num % 1000) - (digitTwo*10 + digitOne))/100;
-        digitFour = (num - (digitThree*100 + digitTwo*10 + digitOne))/1000;
+        digitFour = ( (num %10000) - (digitThree*100 + digitTwo*10 + digitOne))/1000;
         if (num < 10) {
             return digitOne;
         } else if (num < 100) {
