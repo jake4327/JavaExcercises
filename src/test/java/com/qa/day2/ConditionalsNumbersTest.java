@@ -6,13 +6,6 @@ import static org.junit.Assert.assertEquals;
 
 public class ConditionalsNumbersTest {
 
-    /*System.out.println(digitAddition(99));
-    System.out.println(numbersToDigits(99));
-    System.out.println(numbersToDigits(50));
-    System.out.println(digitAdditionThreeNumbers(189));
-    System.out.println(digitAdditionFourNumbers(9999));
-*/
-
     @Test
     public void testDigitAddition(){
         assertEquals(0,ConditionalsNumbers.digitAdditionTenToOneHundered(1));
