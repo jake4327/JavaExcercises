@@ -2,24 +2,6 @@ package com.qa.day3;
 
 public class IterationStringManipulation {
 
-    public static void main(String[] args) {
-        /**System.out.println(countWords("This is a sentence where all of the words are counted there are fiftheen words"));
-        System.out.println(countWords(" space at front word count six"));
-        System.out.println(countWords("space at back word count six "));
-        System.out.println(countWords("   double  space at front and double space at back word count tweleve   "));
-        System.out.println();
-        printVertical("hello World");
-        System.out.println();
-        printReverseVertical("hello World");
-        System.out.println();
-        **/
-        insideMessage("hello World", "hello");
-        insideMessage("0000", "000");
-        insideMessage("11 1 1 1", "1");
-        insideMessage("hello", "goodbye");
-        insideMessage("small match", "all");
-    }
-
     public static int countWords(String input){
         int count = 0;
         boolean space = true;
@@ -47,16 +29,22 @@ public class IterationStringManipulation {
         return count;
     }
 
-    public static void printVertical(String input){
+    public static String printVertical(String input){
+        String s = "";
         for(int i = 0; i < input.length(); i++){
-            System.out.println(input.substring(i, i+1));
+            //System.out.println(input.substring(i, i+1));
+            s += input.substring(i, i+1) + "\n";
         }
+        return s;
     }
 
-    public static void printReverseVertical(String input){
+    public static String printReverseVertical(String input){
+        String s = "";
         for(int i = input.length(); i > 0; i--){
-            System.out.println(input.substring(i-1, i));
+            //System.out.println(input.substring(i-1, i));
+            s += input.substring(i-1, i) + "\n";
         }
+        return s;
     }
 
     public static boolean insideMessage(String message, String doesMessageContain){
