@@ -17,6 +17,7 @@ public class ConditionalsTest {
         assertEquals("ABE" , Conditionals.flowChart(2001));
         assertEquals("135" , Conditionals.flowChart(2000));
         assertEquals("1346" , Conditionals.flowChart(599));
+        assertEquals("1347" , Conditionals.flowChart(499));
         assertEquals("ABE" , Conditionals.flowChart(3000));
         assertEquals("ABD" , Conditionals.flowChart(4001));
         assertEquals("AC" , Conditionals.flowChart(6001));

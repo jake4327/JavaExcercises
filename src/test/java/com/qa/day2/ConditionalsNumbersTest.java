@@ -63,7 +63,6 @@ public class ConditionalsNumbersTest {
         assertEquals(36,ConditionalsNumbers.digitAdditionFourNumbers(9999));
         assertEquals(6,ConditionalsNumbers.digitAdditionFourNumbers(5001));
         assertEquals(5,ConditionalsNumbers.digitAdditionFourNumbers(5000));
-
     }
 
 }

@@ -255,7 +255,7 @@ public class PeerProgramming {
     }
 
     /*
-    * Daood's version
+    * @author Team Two - type assisstant: Daood version
      */
     public static void goldilocks(int[] goldilocks){
         // goldilocks 0 = weight
