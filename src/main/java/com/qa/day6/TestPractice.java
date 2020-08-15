@@ -2,7 +2,14 @@ package com.qa.day6;
 
 public class TestPractice {
 
-    public static void method1(){}
+    int var1 = 5;
+
+
+    private static void method1(){
+        int var = 5;
+    }
+
+
     public static void method2(){}
     public static void method3(){}
     public static void method4(){}

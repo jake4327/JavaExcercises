@@ -5,17 +5,12 @@ import java.util.Arrays;
 public class MorseCode {
 
     public static String[] alphabetMorse = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", "/"};
-
+    public static char[] alphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' '};
 
     public static String encodeEnglishToMorse(String english) {
         String encryptedString = english.toLowerCase();
         String outString = "";
-        char[] alphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' '};
-        String[] alphabetMorse = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", " / "};
-        // a ---> .-, // 'c' this is a char 'fjfj' this is a String //give
-        // b ---> -...
-        // c ---> -.-.
-        char[] encryptedStringAsCharArray = encryptedString.toCharArray(); // message -> ['m','e']
+        char[] encryptedStringAsCharArray = encryptedString.toCharArray();
         for (char c : encryptedStringAsCharArray) {
             for (int a = 0; a < alphabet.length; a++) {
                 if (c == alphabet[a]) {
@@ -23,8 +18,6 @@ public class MorseCode {
                 }
             }
         }
-
-
         return outString;
     }
 
