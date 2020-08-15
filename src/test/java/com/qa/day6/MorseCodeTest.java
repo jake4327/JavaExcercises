@@ -9,10 +9,9 @@ public class MorseCodeTest {
     public void encodeEnglishToMorse() {
         //please
         Assert.assertEquals("---.-- / -..---.", MorseCode.encodeEnglishToMorse("My name"));
-        Assert.assertEquals(".- -... -.-. -.....-.--........----.-.-..---.---.--.--.-.-....-..-...-.---..--.----.. / ",
+        Assert.assertEquals(".- / -...-.-.-.....-.--........----.-.-..---.---.--.--.-.-....-..-...-.---..--.----.. / ",
                 MorseCode.encodeEnglishToMorse("a bcdefghijklmnopqrstuvwxyz "));
     }
-
 
 
     @Test
@@ -20,17 +19,20 @@ public class MorseCodeTest {
         //. . . -> EEE
         // - -> TT
         // . . -> EE
-        // .. .. .. / .. .. .. -> II II
-        //Assert.assertEquals("E", MorseCode.decodeMorseToEnglish("."));
+        // .. .. .. / .. .. .. -> III III
+        Assert.assertEquals("TT", MorseCode.decodeMorseToEnglish("- -"));
+        Assert.assertEquals("EE", MorseCode.decodeMorseToEnglish(". ."));
+        Assert.assertEquals("III III", MorseCode.decodeMorseToEnglish(".. .. .. / .. .. .."));
+        Assert.assertEquals("", MorseCode.decodeMorseToEnglish(" "));
+        Assert.assertEquals(" ", MorseCode.decodeMorseToEnglish("/"));
+        Assert.assertEquals("E", MorseCode.decodeMorseToEnglish("."));
         Assert.assertEquals("EEE", MorseCode.decodeMorseToEnglish(". . ."));
-        //Assert.assertEquals("TT", MorseCode.decodeMorseToEnglish("- -"));
-        //Assert.assertEquals("EE", MorseCode.decodeMorseToEnglish(". ."));
-        Assert.assertEquals("III III", MorseCode.decodeMorseToEnglish(".. .. ../.. .. .."));
     }
 
     @Test
     public void changeSimpleStringToMorseCode() {
         Assert.assertEquals("E", MorseCode.singleLetterMorseToEnglish("."));
         Assert.assertEquals("I", MorseCode.singleLetterMorseToEnglish(".."));
+        Assert.assertEquals("", MorseCode.singleLetterMorseToEnglish(" "));
     }
 }
