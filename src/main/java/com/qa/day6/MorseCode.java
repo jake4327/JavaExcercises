@@ -1,7 +1,5 @@
 package com.qa.day6;
 
-import java.util.Arrays;
-
 public class MorseCode {
 
     public static String[] alphabetMorse = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", "/"};
@@ -34,7 +32,7 @@ public class MorseCode {
     public static String decodeMorseToEnglish(String morse) {
         String output = "";
         String[] singleWords = morse.split(" ");
-        System.out.println(Arrays.toString(singleWords));
+        //System.out.println(Arrays.toString(singleWords));
         for(String s: singleWords){
             output += singleLetterMorseToEnglish(s);
         }

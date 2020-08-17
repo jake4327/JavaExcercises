@@ -11,9 +11,8 @@ public class BrokenKeyBoard {
 
     public static ArrayList<Character> alphabet = new ArrayList<>(Arrays.asList('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'));
 
-
     public static void main(String[] args) throws FileNotFoundException {
-        System.out.println(example("src/main/java/com/qa/day5/input.txt","src/main/java/com/qa/day5/dictionary.txt"));
+        System.out.println(example("src/main/java/com/qa/day5/input.txt", "src/main/java/com/qa/day5/dictionary.txt"));
         //example();
     }
 
@@ -21,12 +20,13 @@ public class BrokenKeyBoard {
         ArrayList<String> keyBoards = getWorkingKeys(fileLocationOfInput);
         ArrayList<String> answer = new ArrayList<>();
         keyBoards.remove(0);
-        for(String s: keyBoards) {
+        for (String s : keyBoards) {
             Scanner scannerObjInDictionary = getDictionary(fileLocationOfDictionary);
 
             ArrayList<Character> brokenKeysOnKeyBoard = getBrokenKeys(s);
 
-            ArrayList<String> possibleWords = filterWords(scannerObjInDictionary, brokenKeysOnKeyBoard);
+            //ArrayList<String> possibleWords = filterWords(scannerObjInDictionary, brokenKeysOnKeyBoard);
+            ArrayList<String> possibleWords = filterWordsAdditional(scannerObjInDictionary, s, brokenKeysOnKeyBoard, 5);
             String ans = longestWord(possibleWords);
             answer.add(ans);
         }
@@ -35,7 +35,7 @@ public class BrokenKeyBoard {
 
     private static String formatAnswer(ArrayList<String> answer, ArrayList<String> keyBoards) {
         String output = "";
-        for(int i =0; i < answer.size(); i++){
+        for (int i = 0; i < answer.size(); i++) {
             output += keyBoards.get(i) + " = " + answer.get(i) + "\n";
         }
         return output;
@@ -47,23 +47,56 @@ public class BrokenKeyBoard {
             String s = dictionaryScanner.nextLine();
             boolean canSubmit = true;
             //if s contains any letters c in broken keys don't record
-            for(Character c: brokenKeys){
-                if(s.contains(c.toString())){
-                    canSubmit= false;
+            for (Character c : brokenKeys) {
+                if (s.contains(c.toString())) {
+                    canSubmit = false;
                     break;
                 }
             }
-            if(canSubmit){
+            if (canSubmit) {
                 possibleWords.add(s);
             }
         }
         return possibleWords;
     }
 
-    private static ArrayList<Character> getBrokenKeys(String keysThatWork){
+    private static ArrayList<String> filterWordsAdditional(Scanner dictionaryScanner, String workingKeys, ArrayList<Character> brokenKeys, int numberOfTimesTheLetterCanAppear){
+        ArrayList<String> possibleWords = filterWords(dictionaryScanner, brokenKeys);
+        //for each possible word count the occurences of
+        char[] workingKeysAsCharArray = workingKeys.toCharArray();
+        int count = 0;
+        ArrayList<String> possibleWordsWithExraRestriction = (ArrayList<String>) possibleWords.clone();
+       /* for(String s: possibleWords){
+            System.out.println(s);
+            if(s.length() <= brokenKeys.size() * numberOfTimesTheLetterCanAppear ){
+                System.out.println("Is this string of appropriate size: " + s);
+                possibleWordsWithExraRestriction.add(s);
+            }
+        }*/
+
+        for(String words: possibleWordsWithExraRestriction){
+            char[] wordsAsCharArray = words.toCharArray();
+            for(Character key: wordsAsCharArray){
+                // [lolliop ---> [l,o,l,l,i,o,p] ----> ]
+                count = 0;
+                for(char letter: wordsAsCharArray){
+                    if(letter == key){
+                        count++;
+                    }
+                }
+                if(!(count <= numberOfTimesTheLetterCanAppear)){
+                    possibleWordsWithExraRestriction.remove(words);
+                }
+            }
+        }
+        return possibleWordsWithExraRestriction;
+
+    }
+
+    private static ArrayList<Character> getBrokenKeys(String keysThatWork) {
         ArrayList<Character> brokenLetters = (ArrayList<Character>) alphabet.clone();
         char[] keyThatWorkCharArray = keysThatWork.toCharArray();
-        for(char c: keyThatWorkCharArray) {
+        for (char c : keyThatWorkCharArray) {
             brokenLetters.removeIf(Predicate.isEqual(c));
         }
         return brokenLetters;
@@ -72,8 +105,8 @@ public class BrokenKeyBoard {
     private static String longestWord(ArrayList<String> possibleWords) {
         int longestWord = 0;
         String output = "";
-        for(String s: possibleWords){
-            if(s.length() > longestWord){
+        for (String s : possibleWords) {
+            if (s.length() > longestWord) {
                 longestWord = s.length();
                 output = s;
             }
@@ -88,16 +121,6 @@ public class BrokenKeyBoard {
         return scan;
     }
 
-    private static int getLongestWord(Scanner scan){
-        int largestWord = 0;
-        while(scan.hasNext()){
-            if(scan.next().length() > largestWord){
-                largestWord += scan.next().length();
-            }
-        }
-        return largestWord;
-    }
-
     public static ArrayList<String> getWorkingKeys(String fileName) throws FileNotFoundException {
         File dictionary = new File(fileName);
         Scanner scan = new Scanner(dictionary);
@@ -105,8 +128,9 @@ public class BrokenKeyBoard {
         int numberOfKeyboards = scan.nextInt();
         ArrayList<String> brokenKeyBoards = new ArrayList<>();
 
-        for(int i = 0; i < numberOfKeyboards+1; i++){
+        for (int i = 0; i < numberOfKeyboards + 1; i++) {
             brokenKeyBoards.add(scan.nextLine());
         }
         return brokenKeyBoards;
     }
+}
