@@ -1,96 +1,136 @@
 package com.qa.day5;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+import java.util.function.Predicate;
 
 public class BrokenKeyBoard {
 
-    //USE DYNAMIC PROGRAMMING
-    //GRID
-    //Recursive solution???
-    //SIMPLE METHOD - O()
-    //input = {lines to read, keysThatWorkLineOne, keysThatWorkLineTwo, keysThatWorkLineThree}
-    //input = {3, "abcd","qwer","hjk"}
-    //input = {dictionary.txt}
-    //Function
-    //Example
-    //search a -> aa(full match Len: 2) -> aaa -> X -> aab -> X-> aac -> X-> aad -> X ->
-    //       ab -> abb -> abba(full match Len:4) -> abbaa ->X -> abbab - > X->
-    //       abbac -> abbad -> X -> abbb ->  X -> abbc -> X ->
-    //       abbd -> X -> ba(full match Len:2) -> baa (full match Len:3) -> baaa -> X ->
-    //       baab -> X -> baac -> X -> baad -> X -> bab -> baba(full match Len:4)
-    //What am I doing?
-    //Take the first char = firstWorkingKey from the keysThatWorkLineOne string
-    //Compare firstWorkingKey to dictionary
-    //String[] justKeysThatWork = input[1..N] REMOVING input[0]
-    //for(String s : justKeysThatWork){
-    // char[] workingKeys = turnWorkingKeysToCharArray(s)
-    //  for(char c: workingKeys){
-    //      currentMatchString<Char> = []
-    //      currentMatchString.add(c)
-    //      for(char c1: workingKeys){
-    //
-    //
-    //      if match currentMatchString = firstWorkingKey
-    //           if(matchToDictionary(currentMatchString) and currentMatchString.length > currentLongestWord){
-    //              currentLongestString = currentMatchString;
-    //            }
-    //      }
-    //      currMatchString.add(c1);
-    //
-    // }
-    //return currentLongestWord;
+    public static ArrayList<Character> alphabet = new ArrayList<>(Arrays.asList('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'));
 
-    public static void main(String[] args) {
-        ArrayList<String> input = new ArrayList<>();
-        input.add("3");
-        input.add("abcd");
-        //input.add("hjklo");
-        //input.add("qwer");
-        helpMeMyKeyBoardsBroken(input);
+    public static void main(String[] args) throws FileNotFoundException {
+        System.out.println(example("src/main/java/com/qa/day5/input.txt", "src/main/java/com/qa/day5/dictionary.txt"));
+        //example();
     }
 
-    public static void helpMeMyKeyBoardsBroken(ArrayList<String> inputArray) {
-        //formatInput()
-        ArrayList<String> justKeysThatWork = new ArrayList<>();
-        ArrayList<Character> currentMatchString = new ArrayList<>();
-        //System.out.println(justKeysThatWork.length);
-        for (int i = 1; i < inputArray.size(); i++) {
-            justKeysThatWork.add(inputArray.get(i));
-        }
-        char[] workingKeys = new char[4]; //Insert a library
-        for (String s : justKeysThatWork) {
+    public static String example(String fileLocationOfInput, String fileLocationOfDictionary) throws FileNotFoundException {
+        ArrayList<String> keyBoards = getWorkingKeys(fileLocationOfInput);
+        ArrayList<String> answer = new ArrayList<>();
+        keyBoards.remove(0);
+        for (String s : keyBoards) {
+            Scanner scannerObjInDictionary = getDictionary(fileLocationOfDictionary);
 
-            workingKeys = s.toCharArray();
-            System.out.println(workingKeys);
-            /*for (char c : workingKeys) {
-                currentMatchString = new ArrayList<>();
-                currentMatchString.add(c);
-                for(char c1: workingKeys) {
-                    //System.out.print(c1);
-                    while(currentMatchString.size() < 5){
-                        System.out.print("Functionality");
-                        //keep adding a till I say stop
-                        System.out.println(" Word Searching: " + currentMatchString.toString());
-                        currentMatchString.add(c1);
-                    }
+            ArrayList<Character> brokenKeysOnKeyBoard = getBrokenKeys(s);
+
+            //ArrayList<String> possibleWords = filterWords(scannerObjInDictionary, brokenKeysOnKeyBoard);
+            ArrayList<String> possibleWords = filterWords(scannerObjInDictionary, brokenKeysOnKeyBoard);
+            String ans = longestWord(possibleWords);
+            answer.add(ans);
+        }
+        return formatAnswer(answer, keyBoards);
+    }
+
+    private static String formatAnswer(ArrayList<String> answer, ArrayList<String> keyBoards) {
+        String output = "";
+        for (int i = 0; i < answer.size(); i++) {
+            output += keyBoards.get(i) + " = " + answer.get(i) + "\n";
+        }
+        return output;
+    }
+
+    private static ArrayList<String> filterWords(Scanner dictionaryScanner, ArrayList<Character> brokenKeys) {
+        ArrayList<String> possibleWords = new ArrayList<>();
+        while (dictionaryScanner.hasNext()) {
+            String s = dictionaryScanner.nextLine();
+            boolean canSubmit = true;
+            //if s contains any letters c in broken keys don't record
+            for (Character c : brokenKeys) {
+                if (s.contains(c.toString())) {
+                    canSubmit = false;
+                    break;
                 }
             }
-        }*/
-            //      currentMatchString<Char> = []
-            //      currentMatchString.add(c)
-            //      for(char c1: workingKeys){
-            //
-            //
-            //      if match currentMatchString = firstWorkingKey
-            //           if(matchToDictionary(currentMatchString) and currentMatchString.length > currentLongestWord){
-            //              currentLongestString = currentMatchString;
-            //            }
-            //      }
-            //      currMatchString.add(c1);
-            //
-            // }
-            //return currentLongestWord;
+            if (canSubmit) {
+                possibleWords.add(s);
+            }
         }
+        return possibleWords;
+    }
+
+    private static ArrayList<String> filterWordsAdditional(Scanner dictionaryScanner, String workingKeys, ArrayList<Character> brokenKeys, int numberOfTimesTheLetterCanAppear){
+        ArrayList<String> possibleWords = filterWords(dictionaryScanner, brokenKeys);
+        //for each possible word count the occurences of
+        char[] workingKeysAsCharArray = workingKeys.toCharArray();
+        int count = 0;
+        ArrayList<String> possibleWordsWithExraRestriction = (ArrayList<String>) possibleWords.clone();
+       /* for(String s: possibleWords){
+            System.out.println(s);
+            if(s.length() <= brokenKeys.size() * numberOfTimesTheLetterCanAppear ){
+                System.out.println("Is this string of appropriate size: " + s);
+                possibleWordsWithExraRestriction.add(s);
+            }
+        }*/
+
+        for(String words: possibleWordsWithExraRestriction){
+            char[] wordsAsCharArray = words.toCharArray();
+            for(Character key: wordsAsCharArray){
+                // [lolliop ---> [l,o,l,l,i,o,p] ----> ]
+                count = 0;
+                for(char letter: wordsAsCharArray){
+                    if(letter == key){
+                        count++;
+                    }
+                }
+                if(!(count <= numberOfTimesTheLetterCanAppear)){
+                    possibleWordsWithExraRestriction.remove(words);
+                }
+            }
+        }
+        return possibleWordsWithExraRestriction;
+
+    }
+
+    private static ArrayList<Character> getBrokenKeys(String keysThatWork) {
+        ArrayList<Character> brokenLetters = (ArrayList<Character>) alphabet.clone();
+        char[] keyThatWorkCharArray = keysThatWork.toCharArray();
+        for (char c : keyThatWorkCharArray) {
+            brokenLetters.removeIf(Predicate.isEqual(c));
+        }
+        return brokenLetters;
+    }
+
+    private static String longestWord(ArrayList<String> possibleWords) {
+        int longestWord = 0;
+        String output = "";
+        for (String s : possibleWords) {
+            if (s.length() > longestWord) {
+                longestWord = s.length();
+                output = s;
+            }
+        }
+        return output;
+    }
+
+    public static Scanner getDictionary(String fileName) throws FileNotFoundException {
+        File dictionary = new File(fileName);
+        Scanner scan = new Scanner(dictionary);
+
+        return scan;
+    }
+
+    public static ArrayList<String> getWorkingKeys(String fileName) throws FileNotFoundException {
+        File dictionary = new File(fileName);
+        Scanner scan = new Scanner(dictionary);
+
+        int numberOfKeyboards = scan.nextInt();
+        ArrayList<String> brokenKeyBoards = new ArrayList<>();
+
+        for (int i = 0; i < numberOfKeyboards + 1; i++) {
+            brokenKeyBoards.add(scan.nextLine());
+        }
+        return brokenKeyBoards;
     }
 }
-

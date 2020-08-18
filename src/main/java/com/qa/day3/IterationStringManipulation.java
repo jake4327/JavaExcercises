@@ -54,7 +54,7 @@ public class IterationStringManipulation {
                 //System.out.println(doesMessageContain);
                 //System.out.println();
                 if (doesMessageContain.equals(message.substring(i, doesMessageContain.length()+i))) {
-                    System.out.println("match found");
+                    //System.out.println("match found");
                     return true;
                 }
             }catch(Exception e){

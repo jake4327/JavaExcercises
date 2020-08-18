@@ -153,14 +153,6 @@ public class PeerProgramming {
             }
         }
     }
-    //loop through  0-100 with for loop with array list
-    //if(
-    //!!!!last th, nd, st, rd !!!!
-    //simple for loop -> if(int i is smaller than 3 print i and nd) else if(
-    //
-
-
-//int goldWeight; int maxTempPor; array int[] inputTable; array int[] porridgeTemp; array chairWeight;
 
     public static int[] whereDoesGoldilocksEat(int[] inputData, boolean isLuminosityAFactor) {
         //System.out.println(inputData);
@@ -254,9 +246,6 @@ public class PeerProgramming {
         }
     }
 
-    /*
-    * Daood's version
-     */
     public static void goldilocks(int[] goldilocks){
         // goldilocks 0 = weight
         // goldilocks 1 = Max TEmp
