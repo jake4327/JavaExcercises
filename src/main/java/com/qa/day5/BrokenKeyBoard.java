@@ -26,7 +26,7 @@ public class BrokenKeyBoard {
             ArrayList<Character> brokenKeysOnKeyBoard = getBrokenKeys(s);
 
             //ArrayList<String> possibleWords = filterWords(scannerObjInDictionary, brokenKeysOnKeyBoard);
-            ArrayList<String> possibleWords = filterWordsAdditional(scannerObjInDictionary, s, brokenKeysOnKeyBoard, 5);
+            ArrayList<String> possibleWords = filterWords(scannerObjInDictionary, brokenKeysOnKeyBoard);
             String ans = longestWord(possibleWords);
             answer.add(ans);
         }
