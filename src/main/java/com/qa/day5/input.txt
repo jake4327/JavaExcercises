@@ -1,5 +1,4 @@
-4
+3
 abcdefghijklmnopqrstuvwxyz
 bnik
-poil
-vybu
+qwer

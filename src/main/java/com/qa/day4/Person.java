@@ -4,6 +4,8 @@ public class Person {
     public String fname;
     public String lname;
     final boolean HEAD = true;
+    final String body = "lungs";
+    public static int personCount = 0;
 
     public Person(String fname, String lastName){
         this.fname = fname;
