@@ -1,13 +1,9 @@
 package com.qa.day11;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+public class LaptopRunner extends WorldPrac {
 
-public class LaptopRunner {
-
-    public static void main(String[] args) throws IOException {
-        Laptop l1 = new Laptop("Samsung");
+    public static void main(String[] args) {
+        /*Laptop l1 = new Laptop("Samsung");
         Laptop l2 = new Laptop("Samsung");
         Laptop l3 = new Laptop("Samsung");
         Laptop l4 = new Laptop("Samsung");
@@ -23,7 +19,15 @@ public class LaptopRunner {
         ObjectOutputStream os = new ObjectOutputStream(fileStream);
 
         os.writeObject("hello");
-        os.close();
+        os.close();*/
+
+        System.out.println(WorldPrac.five);
+        System.out.println(WorldPrac.eight);
+
+        //System.out.println(EncapsulationPrac.six);
+        System.out.println(WorldPrac.seven);
+
 
     }
+
 }
