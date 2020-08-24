@@ -6,8 +6,8 @@ import java.util.Set;
 
 public class HashSetsPractice {
 
-    private static Set<String> firstHashSet= new HashSet<>();
-    private static Set<String> secondHashSet= new HashSet<>();
+    private static final Set<String> firstHashSet= new HashSet<>();
+    private static final Set<String> secondHashSet= new HashSet<>();
 
     public static void main(String[] args) {
         method1();
@@ -23,11 +23,12 @@ public class HashSetsPractice {
         }
         method1();
         firstHashSet.clear();
-        System.out.println(firstHashSet);
+        method1();
+        System.out.println(firstHashSet.contains("i"));
+        System.out.println(firstHashSet.contains("e"));
     }
 
-
-    static void method1(){
+    static void method1() {
         firstHashSet.add("h");
         firstHashSet.add("e");
         firstHashSet.add("f");
