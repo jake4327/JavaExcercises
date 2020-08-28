@@ -3,13 +3,13 @@ package com.qa.day13;
 public class SeatingArea {
 
     public static void main(String[] args) {
-        TableOne tableOne = new TableOne(5,"wood");
+        Table table = new Table(5,"wood");
         //...
-        TableOne tableOneMillion = new TableOne(100, "gold");
+        Table tableMillion = new Table(100, "gold");
 
-        System.out.println(tableOne.plantpot);
-        System.out.println(tableOneMillion.plantpot);
-        System.out.println(tableOne.materialObj);
+        System.out.println(table.plantpot);
+        System.out.println(tableMillion.plantpot);
+        System.out.println(table.materialObj);
 
     }
 }

@@ -1,13 +1,13 @@
 package com.qa.day13;
 
-public class TableOne {
+public class Table {
 
     int tableLegsObj;
     static String materialObj;
     String plantpot = "good plant pot";
 
 
-    public TableOne(int tableLegsInput, String materialInput) {
+    public Table(int tableLegsInput, String materialInput) {
         this.tableLegsObj = tableLegsInput;
         this.materialObj = materialInput;
     }
