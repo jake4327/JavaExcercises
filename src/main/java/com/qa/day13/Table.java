@@ -3,7 +3,7 @@ package com.qa.day13;
 public class Table {
 
     int tableLegsObj;
-    static String materialObj;
+    String materialObj;
     String plantpot = "good plant pot";
 
 
@@ -12,9 +12,12 @@ public class Table {
         this.materialObj = materialInput;
     }
 
+    public static void method1() {
+    }
+
 
     public int getTableLegs() {
-        return tableLegsObj;
+        return this.tableLegsObj;
     }
 
     public void setTableLegs(int tableLegs) {
@@ -22,10 +25,13 @@ public class Table {
     }
 
     public String getMaterial() {
-        return materialObj;
+        return this.materialObj;
     }
 
     public void setMaterial(String material) {
         this.materialObj = material;
+    }
+
+    public void method2() {
     }
 }

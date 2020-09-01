@@ -7,9 +7,15 @@ public class SeatingArea {
         //...
         Table tableMillion = new Table(100, "gold");
 
-        System.out.println(table.plantpot);
+       /* System.out.println(table.plantpot);
         System.out.println(tableMillion.plantpot);
         System.out.println(table.materialObj);
+*/
+        Table t5 = new Table(4, "wood");
+        t5.getTableLegs();
+
+        Table.method1();
+        t5.method2();
 
     }
 }
